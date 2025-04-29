@@ -1,0 +1,18 @@
+# folders
+.vscode/*
+
+build/*
+build_release/*
+build_debug/*
+
+external/*
+
+assets/*
+!assets/shaders/
+assets/shaders/*
+!assets/shaders/basic.vert
+!assets/shaders/basic.frag
+
+# files
+.gitmodules
+imgui.ini
