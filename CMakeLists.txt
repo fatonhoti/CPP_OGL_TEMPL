@@ -6,9 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(PROJECT_SOURCES
     src/main.cpp
+    src/Application.cpp
 
-    src/renderer/Texture.cpp
+    src/renderer/VertexArray.cpp
     src/renderer/Buffer.cpp
+    src/renderer/Texture.cpp
     src/renderer/Shader.cpp
 
     src/input/Input.cpp

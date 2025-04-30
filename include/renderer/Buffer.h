@@ -1,7 +1,6 @@
 #pragma once
 
 #include <cstdint>
-#include <vector>
 
 #include "glad/glad.h"
 
@@ -12,32 +11,18 @@ enum class BufferType {
     Index
 };
 
-struct VertexBufferConfig {
-    GLuint index;
-    GLint size;
-    GLenum type;
-    GLboolean normalized;
-    GLsizei stride;
-    const void* pointer;
-
-    VertexBufferConfig(GLuint index_, GLint size_, GLenum type_, GLboolean normalized_, GLsizei stride_, const void* pointer_)
-        : index(index_), size(size_), type(type_), normalized(normalized_), stride(stride_), pointer(pointer_) {}
-};
-
 class Buffer {
 public:
-    Buffer(const void* data, const unsigned int size, BufferType type);
-    Buffer(const void* data, const unsigned int size, const std::vector<VertexBufferConfig>& layout);
+    Buffer(const void* data, const uint32_t size, const BufferType type);
     ~Buffer();
 
-    const uint32_t handle() const;
+    [[nodiscard]] const GLuint handle() const { return m_Handle; }
     void bind() const;
     void unbind() const;
 
 private:
-    uint32_t m_Handle;
-    uint32_t m_Type;
-    std::vector<VertexBufferConfig> m_VertexBufferLayout;
+    GLuint m_Handle;
+    GLenum m_Type;
 };
 
 } // namespace Renderer

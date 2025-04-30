@@ -11,14 +11,16 @@ namespace fs = std::filesystem;
 
 namespace Renderer {
 
-Shader::Shader(const std::string& vertexPath, const std::string& fragmentPath)
-    : m_Handle(createShader(vertexPath, fragmentPath)) {}
-
-Shader::Shader(const std::string& computePath)
-    : m_Handle(createComputeShader(computePath)) {}
-
 Shader::~Shader() {
     glDeleteProgram(m_Handle);
+}
+
+void Shader::load(const std::string& vertexPath, const std::string& fragmentPath) {
+    m_Handle = createShader(vertexPath, fragmentPath);
+}
+
+void Shader::loadCompute(const std::string& computePath) {
+    m_Handle = createComputeShader(computePath);
 }
 
 void Shader::bind() const {
@@ -53,7 +55,7 @@ void Shader::setUniformMat4f(const std::string& name, const float* matrix) {
     glUniformMatrix4fv(getUniformLocation(name), 1, GL_FALSE, matrix);
 }
 
-int Shader::getUniformLocation(const std::string& name) {
+int32_t Shader::getUniformLocation(const std::string& name) {
     if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end()) {
         return m_UniformLocationCache[name];
     }
@@ -68,11 +70,10 @@ int Shader::getUniformLocation(const std::string& name) {
 uint32_t Shader::createShader(const std::string& vertexPath, const std::string& fragmentPath) {
 
     auto cwd = fs::current_path();
-    const std::string cwd_str = cwd.string();
     // if program is ran from the build folder, we step out once to
     // end up in the root folder so we can navigate to 'assets/shaders'.
     // Not ideal way of handling this, but this is meant to be a rudimentary setup.
-    if (cwd_str.find("build_") != std::string::npos || 
+    if (cwd.string().find("build_") != std::string::npos ||
         cwd.filename().string().find("build") == 0) {
         cwd = cwd.parent_path();
     }
