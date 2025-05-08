@@ -1,6 +1,8 @@
 # C++ & OpenGL Template
 
-This repository provides a template for starting C++ projects using OpenGL. It includes a small rudimentary abstraction layer over OpenGL. This is not meant to be a feature rich, robust, and flexible framework.
+This repository provides a template for starting C++ projects using OpenGL. It includes a small rudimentary abstraction layer over OpenGL. This is NOT meant to be a feature rich, robust, and flexible "framework". It is meant to be a solution to the classic "I am bored, I want to start another OpenGL project, but I am too lazy to set the basics up" situation.
+
+![image showing the application running rendering a triangle](demo.png)
 
 ## Included Dependencies (as Submodules)
 
@@ -13,7 +15,7 @@ This repository provides a template for starting C++ projects using OpenGL. It i
 
 ## Setup Instructions
 
-Assuming you are on **Linux** (not tested on other platforms), follow these steps to set up the project on your local machine:
+Assuming you are on **Linux** (not tested on other platforms, but probably (famous last words) works on Windows too), follow these steps to set up the project on your local machine:
 
 1.  **Clone the repository:**
     ```bash
@@ -49,9 +51,11 @@ Assuming you are on **Linux** (not tested on other platforms), follow these step
         ```bash
         CPP_OGL_TEMPL
             external
-                glad/include/glad/glad.h
-                glad/include/KHR/khrplatform.h
-                glad/src/glad.c
+                glad
+                    include
+                        glad/glad.h
+                        KHR/khrplatform.h
+                    src/glad.c
             ...
         ```
 
@@ -60,8 +64,8 @@ Assuming you are on **Linux** (not tested on other platforms), follow these step
     * Place the downloaded/cloned repo inside your project's external folder (`CPP_OGL_TEMPL/external`).
 
 5.  **Building:**
-    * For a debug build run `./debug_build.sh`.
-    * For a release build run `./rel_build.sh`.
+    * For a debug build run `./debug_build.sh` (or `.bat` if on Windows).
+    * For a release build run `./rel_build.sh` (-.-).
 
 6.  **Run the executable:**
     After a successful build, the executable will be located in the appropriate `build_*` directory, e.g., `build_release`. You can then run `./build_release/CPP_OGL_TEMPLATE` to run the program.
@@ -99,18 +103,18 @@ CPP_OGL_TEMPL/
 │       └── Input.cpp
 |── debug_build.sh
 |── rel_build.sh
-|── .gitmodules
+|── debug_build.bat
+|── rel_build.bat
 |── CMakeLists.txt
 |── .gitmodules
 └── .gitignore
-
 ```
 
 ## Usage
 
 This template provides a starting point with basic abstractions for:
 
-* **OpenGL Objects:** `Texture`, `Buffer`, `Shader` classes in the `Renderer` namespace.
+* **OpenGL Objects:** `Texture`, `VertexArray`, `Buffer`, `Shader` classes in the `Renderer` namespace.
 * **Input Handling:** Static functions in the `Input` namespace for keyboard and mouse input.
 * **GUI:** Integrated ImGui library.
 
@@ -131,7 +135,3 @@ Here are some guidelines for contributing:
 ## License
 
 At your own risk, the code in this template is yours to wield as you see fit.
-
----
-
-![image showing the application running rendering a triangle](demo.png)
