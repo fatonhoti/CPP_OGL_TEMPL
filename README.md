@@ -131,3 +131,7 @@ Here are some guidelines for contributing:
 ## License
 
 At your own risk, the code in this template is yours to wield as you see fit.
+
+---
+
+![image showing the application running rendering a triangle](demo.png)
