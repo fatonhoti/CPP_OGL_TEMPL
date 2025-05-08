@@ -82,8 +82,8 @@ uint32_t Shader::createShader(const std::string& vertexPath, const std::string& 
     const auto path_fragShader = cwd / "assets" / "shaders" / fragmentPath;
 
     const uint32_t program = glCreateProgram();
-    const uint32_t vs = compileShader(path_vertexShader, GL_VERTEX_SHADER);
-    const uint32_t fs = compileShader(path_fragShader, GL_FRAGMENT_SHADER);
+    const uint32_t vs = compileShader(path_vertexShader.string(), GL_VERTEX_SHADER);
+    const uint32_t fs = compileShader(path_fragShader.string(), GL_FRAGMENT_SHADER);
 
     glAttachShader(program, vs);
     glAttachShader(program, fs);
